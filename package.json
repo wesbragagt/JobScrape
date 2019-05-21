@@ -4,7 +4,8 @@
   "description": "Building a job search application using web scrapping.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   "homepage": "https://github.com/wesbragagt/JobScrape#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.3",
     "cherio": "^1.0.0-rc.2",
     "express": "^4.17.0",
     "express-handlebars": "^3.1.0",
