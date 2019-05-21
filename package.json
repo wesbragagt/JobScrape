@@ -1,0 +1,27 @@
+{
+  "name": "JobScrape",
+  "version": "1.0.0",
+  "description": "Building a job search application using web scrapping.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wesbragagt/JobScrape.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wesbragagt/JobScrape/issues"
+  },
+  "homepage": "https://github.com/wesbragagt/JobScrape#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cherio": "^1.0.0-rc.2",
+    "express": "^4.17.0",
+    "express-handlebars": "^3.1.0",
+    "mongoose": "^5.5.10"
+  }
+}
