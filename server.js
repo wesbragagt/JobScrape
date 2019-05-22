@@ -25,31 +25,8 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/jobScrape";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Require routes
-app.get("/", (req, res) => {
-    res.render("index");
-});
-app.get("/api/scrapeJobs", (req, res) => {
-    axios
-        .get("https://www.indeed.com/jobs?q=developer&l=Nashville%2C+TN")
-        .then(response => {
-            const $ = cheerio.load(response.data);
+require("./controller/apiRoutes")(app);
 
-            const jobs = [];
-
-            $("div.sjcl").each(function(i, element) {
-                var companies = $(element)
-                    .children()
-                    .text()
-                    .replace(/\s+/g, " ");
-
-                var link = $(element)
-                    .find("a")
-                    .attr("href");
-                jobs.push(companies, link);
-            });
-            res.json(jobs);
-        });
-});
 
 // -- LISTENING --
 app.listen(PORT, () => {
