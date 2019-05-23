@@ -42,10 +42,15 @@ app.get("/scrape", (req, res) => {
                         .children()
                         .text()
                         .replace(/\s+/g, " "),
-                    link: $(element)
-                        .children("a")
-                        .attr("href")
-                        .replace(/\s+/g, " ")
+                    link: (function() {
+                        const concatLink =
+                            "https://indeed.com" +
+                            $(element)
+                                .children("a")
+                                .attr("href")
+                                .replace(/\s+/g, " ");
+                        return concatLink;
+                    })()
                 };
 
                 db.Job.create(post)
@@ -59,12 +64,29 @@ app.get("/scrape", (req, res) => {
             res.send("scrape complete");
         });
 });
-app.get("/jobs", (req,res)=>{
-db.Job.find({}).then(dbJob => {
-    res.json(dbJob);
-}).catch(err =>{
-    console.log(err);
+
+app.get("/jobs", (req, res) => {
+    db.Job.find({})
+        .then(dbJob => {
+            res.json(dbJob);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+});
+
+app.get("/deleteAll", (req, res)=>{
+    db.Job.remove({}).then(dbJob=>{
+        res.send("database deleted");
+    })
 })
+
+app.get("/", (req, res) => {
+    db.Job.find({})
+        .then(dbJobs => {
+            res.render("index", { jobs: dbJobs });
+        })
+        .catch();
 });
 
 // -- LISTENING --
