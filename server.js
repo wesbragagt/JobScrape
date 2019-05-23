@@ -1,5 +1,5 @@
 const express = require("express");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const mongoose = require("mongoose");
 
 // -- MODELS --
@@ -26,6 +26,7 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Require routes
 require("./controller/apiRoutes")(app);
+require("./controller/htmlRoutes")(app);
 
 
 // -- LISTENING --

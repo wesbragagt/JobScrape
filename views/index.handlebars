@@ -1,2 +1,11 @@
-<h1>Welcome to jobScrape</h1>
-<p>{{companies}}</p>
+<ul class="collection with-header">
+    <li class="collection-header">
+        <h4>JobScrape</h4>
+    </li>
+    {{#each jobs}}
+    <li class="collection-item">{{this.title}}</li>
+    <li class="collection-item"><a target="_blank" href="{{this.link}}">{{this.link}}</a></li>
+    {{/each}}
+
+
+</ul>
