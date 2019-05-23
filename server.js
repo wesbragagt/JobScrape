@@ -11,6 +11,9 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const exphbs = require("express-handlebars");
 
+// MODELS
+const db = require("./models");
+
 //--- EXPRESS PARSER ---
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -25,9 +28,44 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/jobScrape";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Require routes
-require("./controller/apiRoutes")(app);
-require("./controller/htmlRoutes")(app);
+app.get("/scrape", (req, res) => {
+    axios
+        .get("https://www.indeed.com/jobs?q=developer&l=Nashville%2C+TN")
+        .then(response => {
+            const $ = cheerio.load(response.data);
 
+            const jobs = [];
+            $("div.title").each(function(i, element) {
+                const post = {
+                    id: i,
+                    title: $(element)
+                        .children()
+                        .text()
+                        .replace(/\s+/g, " "),
+                    link: $(element)
+                        .children("a")
+                        .attr("href")
+                        .replace(/\s+/g, " ")
+                };
+
+                db.Job.create(post)
+                    .then(dbJob => {
+                        console.log(dbJob);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            });
+            res.send("scrape complete");
+        });
+});
+app.get("/jobs", (req,res)=>{
+db.Job.find({}).then(dbJob => {
+    res.json(dbJob);
+}).catch(err =>{
+    console.log(err);
+})
+});
 
 // -- LISTENING --
 app.listen(PORT, () => {

@@ -11,6 +11,10 @@ const JobSchema = new Schema({
     link: {
         type: String,
         require: true
+    },
+    note: {
+        type: Schema.Types.ObjectId,
+        ref:"Note"
     }
 });
 
