@@ -61,7 +61,7 @@ app.get("/scrape", (req, res) => {
                         console.log(err);
                     });
             });
-            res.send("scrape complete");
+            res.redirect("/");
         });
 });
 
@@ -75,11 +75,12 @@ app.get("/jobs", (req, res) => {
         });
 });
 
-app.get("/deleteAll", (req, res)=>{
-    db.Job.remove({}).then(dbJob=>{
+app.get("/deleteAll", (req, res) => {
+    db.Job.remove({}).then(dbJob => {
         res.send("database deleted");
-    })
-})
+    });
+    res.redirect("/");
+});
 
 app.get("/", (req, res) => {
     db.Job.find({})
