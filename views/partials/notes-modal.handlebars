@@ -1,20 +1,25 @@
 <div class="modal" id="notes">
+    <header class="row">
+        <h4 id="jobTitle" class="col s12 center-align">title</h4>
+        <h4 id="jobCompany" class="col s12 center-align">company</h4>
+    </header>
     <div class="row">
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="input_text" type="text" data-length="10">
-                    <label for="input_text">Input text</label>
+                    <input id="title_text" type="text" data-length="10">
+                    <label for="title_text">Input text</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
-                    <label for="textarea2">Textarea</label>
+                    <textarea id="body_text" class="materialize-textarea" data-length="120"></textarea>
+                    <label for="body_text">Textarea</label>
                 </div>
             </div>
             <div class="modal-footer">
-                <button href="#!" class="modal-close waves-effect waves-green btn-small">Add</button>
+                <button id="add-note" class="modal-close waves-effect waves-green btn-small"
+                    >Add</button>
             </div>
         </form>
     </div>

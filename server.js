@@ -96,7 +96,7 @@ app.get("/jobs/:id", (req, res) => {
 
 // route for posting notes to job post selected
 app.post("/jobs/:id", (req, res) => {
-    db.Job.create(req.body)
+    db.Note.create(req.body)
         .then(dbNote => {
             return db.Job.findOneAndUpdate(
                 { _id: req.params.id },
