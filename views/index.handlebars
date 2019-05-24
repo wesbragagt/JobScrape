@@ -1,3 +1,4 @@
+{{> notes-modal}}
 <ul class="collection with-header">
     <li class="collection-header">
         <h4 class="center-align">JobScrape</h4>
@@ -13,13 +14,13 @@
     {{#each jobs}}
     <li class="collection-item">
         <div>{{this.title}} - {{this.company}}
-            <a class="secondary-content btn-small halfway-fab waves-effect waves-light teal modal-trigger"
-                href="#modal1">
-                <i class="material-icons">add</i>
-            </a>
             <a href="{{this.link}}" class="primary-content">
                 <i class="material-icons">send</i>
             </a>
+            <button class="secondary-content btn-small halfway-fab waves-effect waves-light teal modal-trigger"
+                href="#notes">
+                <i class="material-icons">add</i>
+            </button>
         </div>
     </li>
     {{/each}}
