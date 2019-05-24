@@ -44,7 +44,6 @@ app.get("/scrape/indeed", (req, res) => {
 
             $("div.title").each(function(i, element) {
                 const post = {
-                    
                     title: $(element)
                         .children()
                         .text()
@@ -76,6 +75,7 @@ app.get("/scrape/indeed", (req, res) => {
         });
 });
 
+// route for getting all the jobs
 app.get("/jobs", (req, res) => {
     db.Job.find({})
         .then(dbJob => {
@@ -84,6 +84,30 @@ app.get("/jobs", (req, res) => {
         .catch(err => {
             console.log(err);
         });
+});
+
+// route for getting a specific job post
+app.get("/jobs/:id", (req, res) => {
+    db.Job.findOne({ _id: req.params.id })
+        .populate("note")
+        .then(dbJob => res.json(dbJob))
+        .catch(err => res.json(err));
+});
+
+// route for posting notes to job post selected
+app.post("/jobs/:id", (req, res) => {
+    db.Job.create(req.body)
+        .then(dbNote => {
+            return db.Job.findOneAndUpdate(
+                { _id: req.params.id },
+                { note: dbNote._id },
+                { new: true }
+            );
+        })
+        .then(dbJob => {
+            res.json(dbJob);
+        })
+        .catch(err => res.json(err));
 });
 
 app.get("/deleteAll", (req, res) => {
