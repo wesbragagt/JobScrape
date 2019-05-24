@@ -1,7 +1,7 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
 module.exports = function(app, db) {
-    app.get("/scrape", (req, res) => {
+    app.get("/scrape/indeed", (req, res) => {
         axios
             .get("https://www.indeed.com/jobs?q=developer&l=Nashville%2C+TN")
             .then(response => {
@@ -28,7 +28,7 @@ module.exports = function(app, db) {
                         console.log(err);
                     })
                 });
-                res.send("scrape complete");
+                res.redirect("/");
             });
     });
 };

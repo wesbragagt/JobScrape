@@ -28,18 +28,29 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/jobScrape";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Require routes
-app.get("/scrape", (req, res) => {
+// HOME PAGE ROUTE
+app.get("/", (req, res) => {
+    db.Job.find({})
+        .then(dbJobs => {
+            res.render("index", { jobs: dbJobs });
+        })
+        .catch();
+});
+app.get("/scrape/indeed", (req, res) => {
     axios
         .get("https://www.indeed.com/jobs?q=developer&l=Nashville%2C+TN")
         .then(response => {
             const $ = cheerio.load(response.data);
 
-            const jobs = [];
             $("div.title").each(function(i, element) {
                 const post = {
-                    id: i,
+                    
                     title: $(element)
                         .children()
+                        .text()
+                        .replace(/\s+/g, " "),
+                    company: $(element)
+                        .next()
                         .text()
                         .replace(/\s+/g, " "),
                     link: (function() {
@@ -76,18 +87,10 @@ app.get("/jobs", (req, res) => {
 });
 
 app.get("/deleteAll", (req, res) => {
-    db.Job.remove({}).then(dbJob => {
+    db.Job.deleteMany({}).then(dbJob => {
         res.send("database deleted");
     });
     res.redirect("/");
-});
-
-app.get("/", (req, res) => {
-    db.Job.find({})
-        .then(dbJobs => {
-            res.render("index", { jobs: dbJobs });
-        })
-        .catch();
 });
 
 // -- LISTENING --

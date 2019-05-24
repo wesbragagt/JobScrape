@@ -8,6 +8,10 @@ const JobSchema = new Schema({
         type: String,
         required: true
     },
+    company: {
+        type: String,
+        required: true
+    },
     link: {
         type: String,
         require: true
