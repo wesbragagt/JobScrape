@@ -5,21 +5,29 @@
     </header>
     <div class="row">
         <form class="col s12">
+
             <div class="row">
-                <div class="input-field col s6">
+
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">mode_edit</i>
                     <input id="title_text" type="text" data-length="10">
-                    <label for="title_text">Input text</label>
+                    <label for="title_text">Title</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
+                    <i class="material-icons prefix">mode_edit</i>
                     <textarea id="body_text" class="materialize-textarea" data-length="120"></textarea>
-                    <label for="body_text">Textarea</label>
+                    <label for="body_text">Note</label>
+                </div>
+            </div>
+            <div class="row">
+                <div id="note-card" class="col s12 m5">
+                    
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="add-note" class="modal-close waves-effect waves-green btn-small"
-                    >Add</button>
+                <button id="add-note" class="modal-close waves-effect waves-green btn-small">Add</button>
             </div>
         </form>
     </div>
