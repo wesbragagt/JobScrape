@@ -88,9 +88,17 @@ app.get("/scrape/monster", (req, res) => {
 
             $("section.card-content").each(function(i, element) {
                 const post = {
-                    title: $(element).find("h2").text().replace(/\s+/g, " "),
-                    company: $(element).find("div.company").text().replace(/\s+/g, " "),
-                    link: $(element).find("a").attr("href")
+                    title: $(element)
+                        .find("h2")
+                        .text()
+                        .replace(/\s+/g, " "),
+                    company: $(element)
+                        .find("div.company")
+                        .text()
+                        .replace(/\s+/g, " "),
+                    link: $(element)
+                        .find("a")
+                        .attr("href")
                 };
                 // console.log($(element).find("h2").text().replace(/\s+/g, " "));
 
@@ -127,6 +135,8 @@ app.get("/jobs/:id", (req, res) => {
 
 // route for posting notes to job post selected
 app.post("/jobs/:id", (req, res) => {
+    console.log(req.body);
+    console.log(req.params);
     db.Note.create(req.body)
         .then(dbNote => {
             return db.Job.findOneAndUpdate(

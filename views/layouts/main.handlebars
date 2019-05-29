@@ -29,13 +29,15 @@
             $(".modal").modal();
         });
 
+        let postId;
+
         // NOTES MODAL CLICK
         $(document).on("click", ".modal-trigger", function () {
             $("#note-card").empty();
             // clear all input fields
             $("#title_text").val("");
             $("#body_text").val("");
-            const postId = $(this).attr("data-id");
+            postId = $(this).attr("data-id");
             console.log(postId);
 
             // get the job info from api
@@ -54,24 +56,26 @@
                 }
             });
 
-            // SAVE NOTE BUTTON CLICK
-            $(document).on("click", "#add-note", function () {
-                // prevent from submitting form
-                event.preventDefault();
-                $.ajax({
-                    method: "POST",
-                    url: "/jobs/" + postId,
-                    data: {
-                        title: $("#title_text").val(),
-                        body: $("#body_text").val()
-                    }
-                }).then(function (data) {
-                    console.log(data);
-                    
-                });
-            });
+
         });
 
+        // SAVE NOTE BUTTON CLICK
+        $(document).on("click", "#add-note", function () {
+            // prevent from submitting form
+            event.preventDefault();
+
+            $.ajax({
+                method: "POST",
+                url: "/jobs/" + postId,
+                data: {
+                    title: $("#title_text").val(),
+                    body: $("#body_text").val()
+                }
+            }).then(function (data) {
+                console.log(data);
+
+            });
+        });
     </script>
 </body>
 
