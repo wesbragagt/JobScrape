@@ -78,6 +78,34 @@ app.get("/scrape/indeed", (req, res) => {
         });
 });
 
+app.get("/scrape/monster", (req, res) => {
+    axios
+        .get(
+            "https://www.monster.com/jobs/search/?q=developer&where=Nashville__2C-TN"
+        )
+        .then(response => {
+            const $ = cheerio.load(response.data);
+
+            $("section.card-content").each(function(i, element) {
+                const post = {
+                    title: $(element).find("h2").text().replace(/\s+/g, " "),
+                    company: $(element).find("div.company").text().replace(/\s+/g, " "),
+                    link: $(element).find("a").attr("href")
+                };
+                // console.log($(element).find("h2").text().replace(/\s+/g, " "));
+
+                db.Job.create(post)
+                    .then(dbJob => {
+                        console.log(dbJob);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            });
+            res.redirect("/");
+        });
+});
+
 // route for getting all the jobs
 app.get("/jobs", (req, res) => {
     db.Job.find({})
