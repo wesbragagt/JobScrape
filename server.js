@@ -116,6 +116,46 @@ app.get("/scrape/monster", (req, res) => {
             res.redirect("/");
         });
 });
+app.get("/scrape/glassdoor", (req, res) => {
+    axios
+        .get(
+            "https://www.glassdoor.com/Job/jobs.htm?suggestCount=0&suggestChosen=false&clickSource=searchBtn&typedKeyword=developer&sc.keyword=developer&locT=C&locId=1144541&jobType="
+        )
+        .then(response => {
+            const $ = cheerio.load(response.data);
+
+            $("li.jl").each(function(i, element) {
+                const post = {
+                    title: $(element)
+                        .find(".titleContainer")
+                        .text()
+                        .replace(/\s+/g, " "),
+                    company: $(element)
+                        .find("div.empLoc")
+                        .text()
+                        .replace(/\s+/g, " "),
+                    link: (function() {
+                        const concatLink =
+                            "https://glassdoor.com" +
+                            $(element)
+                                .find("a")
+                                .attr("href");
+                        return concatLink;
+                    })()
+                };
+                // console.log($(element).find("h2").text().replace(/\s+/g, " "));
+
+                db.Job.create(post)
+                    .then(dbJob => {
+                        console.log(dbJob);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            });
+            res.redirect("/");
+        });
+});
 
 // route for getting all the jobs
 app.get("/jobs", (req, res) => {
