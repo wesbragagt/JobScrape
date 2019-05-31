@@ -1,0 +1,51 @@
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 0.9rem;
+    }
+
+    .buttons-row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .buttons-row a {
+        margin: 1px 0;
+    }
+
+    .job-info {
+        width: 60%;
+    }
+
+    .job-card {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+}
+
+@media only screen and (min-width: 601px) {
+    .buttons-row a {
+        margin: 0 1px;
+    }
+    div .buttons-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .job-info {
+        width: 80%;
+    }
+
+    .job-card {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+}
+@media only screen and (min-width: 1281px) {
+    .container-fluid {
+        width: 50%;
+        margin: 0 auto;
+    }
+}

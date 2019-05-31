@@ -1,7 +1,7 @@
 const express = require("express");
 const PORT = process.env.PORT || 5000;
 const mongoose = require("mongoose");
-
+const path = require("path");
 // -- MODELS --
 
 // --- INITIALIZE EXPRESS ---
@@ -21,6 +21,9 @@ app.use(express.json());
 //--- HANDLEBARS ENGINE ---
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+// --- MIDDLEWARE FOR LOADING FILES ---
+app.use(express.static(path.join(__dirname, "/public")));
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/jobScrape";
 
