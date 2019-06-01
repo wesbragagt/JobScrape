@@ -52,3 +52,7 @@ $(document).on("click", "#add-note", function() {
         console.log(data);
     });
 });
+
+$(window).load(function(){
+$('.preloader-wrapper').toggleClass('hide');
+});

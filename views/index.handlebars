@@ -1,4 +1,5 @@
 {{> notes-modal}}
+
 <ul class="collection with-header section app-container">
     <li class="collection-header">
         <h4 class="center-align">JobScrape<i class="material-icons">search</i></h4>
@@ -19,6 +20,7 @@
             </a>
         </div>
     </li>
+    {{> preloader}}
     {{#each jobs}}
     <li class="collection-item job-card">
         <div class="job-info">{{this.title}} - {{this.company}}
