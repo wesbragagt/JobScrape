@@ -17,15 +17,11 @@ Under development include a login system where the user will be able to have the
 -   [Weslley Braga](https://github.com/wesbragagt)
 
 ## Technologies Used
-
-### Front-end
-
+-   Cheerio
 -   Materialize
 -   AJAX
 -   JQuery
 -   Handlebars
-
-### Back-end
 
 -   Nodejs
 -   Express
@@ -40,7 +36,7 @@ Under development include a login system where the user will be able to have the
 
 -   Heroku
 
----
+-----------------------
 
 ## License & Copyright
 
