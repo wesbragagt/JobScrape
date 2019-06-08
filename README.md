@@ -1,6 +1,6 @@
 # JobScrape
 
-![](jobScrape - Edited.gif)
+![JobScrape](jobScrape - Edited.gif)
 
 ## Live Preview
 
