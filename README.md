@@ -8,8 +8,8 @@
   - [Weslley Braga](https://github.com/wesbragagt)
 
 ## Description
-  JobScrape is a site which allows you to get job postings from the top job hunt websites such as indeed, other websites coming in the future.
-  Under development include a more job websites to scrape and an option to create you job list.
+  JobScrape is a site which allows you to get job postings from indeed, monster and glassdoor, other websites coming in the future.
+  Under development includes a login system and the option to generate a spreadsheet with all the jobs saved.
 
 ## Technologies Used
 
