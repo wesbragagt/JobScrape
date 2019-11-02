@@ -24,6 +24,6 @@
     "cherio": "^1.0.0-rc.2",
     "express": "^4.17.0",
     "express-handlebars": "^3.1.0",
-    "mongoose": "^5.5.10"
+    "mongoose": "^5.7.5"
   }
 }
